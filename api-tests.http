@@ -1,4 +1,4 @@
-### Register
+### Register (only needed once)
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
@@ -8,7 +8,8 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Login
+### Login (send this first)
+# @name login
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -17,6 +18,51 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Get my profile (paste your token after Bearer)
+###
+@token = {{login.response.body.token}}
+
+### Get my profile
 GET http://localhost:5000/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc5NDc1NDIzMSwiZXhwIjoxNzk0ODQwNjMxfQ.t3dCWy0u_ru4Yza9OVs8ojRktUXXYIx9uHiXZADQfrs
+Authorization: Bearer {{token}}
+
+### Create project
+POST http://localhost:5000/api/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "My First Project",
+  "description": "Testing Tovo"
+}
+
+### List projects
+GET http://localhost:5000/api/projects
+Authorization: Bearer {{token}}
+
+### Create task (change the 1 if your project id differs)
+POST http://localhost:5000/api/projects/1/tasks
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Write requirements",
+  "priority": "high",
+  "due_date": "2026-12-01"
+}
+
+### List tasks, filtered
+GET http://localhost:5000/api/projects/1/tasks?priority=high
+Authorization: Bearer {{token}}
+
+### Move task to in progress (change the 1 if your task id differs)
+PATCH http://localhost:5000/api/tasks/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "in_progress"
+}
+
+### Delete task
+DELETE http://localhost:5000/api/tasks/1
+Authorization: Bearer {{token}}

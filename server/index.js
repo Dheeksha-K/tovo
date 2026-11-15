@@ -3,14 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
 const authRoutes = require('./routes/auth');
-
+const projectRoutes = require('./routes/projects');
+const taskRoutes = require('./routes/tasks');
 const app = express();
 
 app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
-
-// Health check: confirms the server and database both work
+app.use('/api/projects', projectRoutes);
+app.use('/api', taskRoutes);
 app.get('/api/health', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
