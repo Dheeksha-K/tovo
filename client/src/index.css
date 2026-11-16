@@ -78,3 +78,63 @@ a { color: #4f46e5; }
   border-bottom: 1px solid #e5e7eb;
   margin-bottom: 16px;
 }
+.brand {
+  font-weight: 700;
+  font-size: 20px;
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+textarea {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+}
+textarea:focus { outline: 2px solid #6366f1; border-color: transparent; }
+
+.project-form {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.project-form h3 { margin: 0 0 4px; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.project-card h3 { margin: 0; }
+.project-card a { text-decoration: none; color: inherit; }
+.project-card p { margin: 0; }
+.project-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+
+button.danger {
+  background: #fff;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+button.danger:hover { background: #fee2e2; }
